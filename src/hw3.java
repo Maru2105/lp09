@@ -48,9 +48,13 @@ public class hw3 {
 
         Scanner yesno = new Scanner(System.in);
         System.out.println("Введите число");
-        world = yesno.nextInt();
-
-
+        int y = yesno.nextInt();
+        if (y == 1){
+           //как сделать повтор нужного цикла
+        }
+        if (y == 0){
+            System.out.println("Спасибо за игру");
+        }while (gameIsOn);
 
         }
     }
