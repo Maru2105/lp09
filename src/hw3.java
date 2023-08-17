@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class hw3 {
     static int number;
-    static int attempts;
+    static boolean gameIsOn;
 
     public static int getRandomDiceNumber() {
         return (int) (Math.random() * 9);
@@ -11,7 +11,8 @@ public class hw3 {
     public static void main(String[] args) {
         int x = getRandomDiceNumber();
         System.out.println(x);
-        attempts = 0;
+        gameIsOn = true;
+        int attempts = 1;
         do {
 
             Scanner in = new Scanner(System.in);
@@ -20,19 +21,23 @@ public class hw3 {
 
             if (x == number) {
                 System.out.println("верно");
+                gameIsOn = false;
             }
             if (x > number || x < number) {
                 System.out.println("неверно");
-
+                attempts++;
+            }
                 if (number > x) {
                     System.out.println("меньше");
                 }
                 if (number < x) {
                     System.out.println("больше");
                 }
-            }
-            attempts++;
-        } while (x!= number && attempts <3);
+                if(attempts >=3){
+                    break;
+                }
+
+        } while (gameIsOn);
         System.out.println("End");
 
 
