@@ -2,23 +2,57 @@ import java.util.Scanner;
 
 public class hw3 {
     static int number;
-    static int world;
+
     static boolean gameIsOn;
 
-    public static int getRandomDiceNumber() {
+
+
+    public static void main(String[] args) {
+        System.out.println("Добро пожаловать в игру! Вам нужно отгадать число");
+        RandomNumber();
+        startGame();
+       endGame();
+
+    }
+
+    private static int RandomNumber() {
         return (int) (Math.random() * 9);
     }
 
-    public static void main(String[] args) {
-        int x = getRandomDiceNumber();
-        System.out.println(x);
+    private static void endGame() {
+        System.out.println("Конец игры");
+
+        System.out.println("Хотите начать игру снова? да/нет ");
+
+
+        Scanner yesno = new Scanner(System.in);
+        System.out.println("Введите ваш ответ");
+        String y = yesno.nextLine();
+        switch (y) {
+            case "да":
+                startGame();
+                endGame();
+                break;
+            case "нет":
+                System.out.println("Спасибо за игру");
+                break;
+        }
+
+
+    }
+
+    private static void Scannerpeople() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите цифру от 0 до 9");
+        number = in.nextInt();
+    }
+
+    private static void startGame() {
+        int x = RandomNumber();
         gameIsOn = true;
         int attempts = 3;
         do {
-            Scanner in = new Scanner(System.in);
-            System.out.println("Введите цифру от 0 до 9");
-            number = in.nextInt();
-
+            Scannerpeople();
 
             if (x == number) {
                 System.out.println("верно");
@@ -27,35 +61,23 @@ public class hw3 {
             if (x > number || x < number) {
                 System.out.println("неверно");
                 attempts--;
-
             }
-                   if (number > x) {
-                       System.out.println("меньше");
+            if (number > x) {
+                System.out.println("меньше");
+            }
+            if (number < x) {
+                System.out.println("больше");
+            }
+            System.out.println("Осталось попыток" + " " + attempts);
 
-                       if (number < x) {
-                           System.out.println("больше");
-                       }
-                       System.out.println("Осталось попыток" + " " + attempts);
-                   }
-                if(attempts <=-0){
-                    break;
-
-                }
+            if (attempts <= 0) {
+                gameIsOn = false;
+            }
 
         } while (gameIsOn);
-        System.out.println("End");
-        System.out.println("Хотите начать игру снова? да - 1 нет - 0");
-
-        Scanner yesno = new Scanner(System.in);
-        System.out.println("Введите число");
-        int y = yesno.nextInt();
-        if (y == 1){
-           //как сделать повтор нужного цикла
-        }
-        if (y == 0){
-            System.out.println("Спасибо за игру");
-        }while (gameIsOn);
-
-        }
     }
+}
+
+
+
 
